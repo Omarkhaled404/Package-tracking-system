@@ -1,0 +1,39 @@
+<div class="create-order-page flex justify-content-center align-items-center min-h-screen">
+  <p-card header="Create Order" [style]="{width: '600px'}">
+    <form #orderForm="ngForm" (ngSubmit)="submitOrder()" class="order-form">
+
+      <!-- User ID Input -->
+      <div class="field">
+        <label for="user-id">User ID</label>
+        <input type="number" id="user-id" name="userId" [(ngModel)]="orderData.user_id" pInputText required />
+      </div>
+
+      <!-- Pickup Location Input -->
+      <div class="field">
+        <label for="pickup-location">Pickup Location</label>
+        <input type="text" id="pickup-location" name="pickupLocation" [(ngModel)]="orderData.pickup_location" pInputText required />
+      </div>
+  
+      <!-- Drop-off Location Input -->
+      <div class="field">
+        <label for="dropoff-location">Drop-off Location</label>
+        <input type="text" id="dropoff-location" name="dropOffLocation" [(ngModel)]="orderData.dropoff_location" pInputText required />
+      </div>
+  
+      <!-- Package Details Input -->
+      <div class="field">
+        <label for="package-details">Package Details</label>
+        <textarea id="package-details" name="packageDetails" [(ngModel)]="orderData.package_details" pInputTextarea required></textarea>
+      </div>
+  
+      <!-- Delivery Time Input -->
+      <div class="field">
+        <label for="delivery-time">Delivery Time</label>
+        <input type="datetime-local" id="delivery-time" name="deliveryTime" [(ngModel)]="orderData.delivery_time" pInputText required />
+      </div>
+
+      <!-- Submit Button -->
+      <p-button label="Submit Order" icon="pi pi-check" class="w-full p-button-success" [disabled]="orderForm.invalid" type="submit"></p-button>
+    </form>
+  </p-card>
+</div>

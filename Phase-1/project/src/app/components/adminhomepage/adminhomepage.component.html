@@ -1,0 +1,51 @@
+<div class="admin-homepage flex justify-content-center align-items-center min-h-screen">
+  <p-card header="Admin Orders" [style]="{width: '600px'}">
+    <!-- Button to manually trigger the fetching of orders -->
+    <p-button label="Load Orders" icon="pi pi-refresh" (click)="getAllOrders()" class="w-full mb-3"></p-button>
+
+    <!-- Display orders only if available -->
+    <div *ngIf="orders.length > 0; else noOrders">
+      <div *ngFor="let order of orders" class="order-item">
+        <p><strong>Order ID:</strong> {{ order.order_id }}</p>
+        <p><strong>Pickup Location:</strong> {{ order.pickup_location }}</p>
+        <p><strong>Drop-off Location:</strong> {{ order.dropoff_location }}</p>
+        <p><strong>Package Details:</strong> {{ order.package_details }}</p>
+        <p><strong>Delivery Time:</strong> {{ order.delivery_time }}</p>
+        <p><strong>Status:</strong> {{ order.status }}</p>
+        <p><strong>Courier ID:</strong> {{ order.courier_id }}</p> <br/>
+        
+        <div class="field">
+          <label for="status">Status</label>
+          <select class="w-full" id="status" [(ngModel)]="order.status" (change)="onStatusChange(order)">
+            <option value="">Select Status</option>
+            <option value="pending">pending</option>
+            <option value="accepted">accepted</option>
+            <option value="in_transit">in_transit</option>
+            <option value="delivered">delivered</option>
+            <option value="canceled">canceled</option>
+          </select>
+        </div>
+
+        <button pButton label="Delete" icon="pi pi-trash" class="w-full p-button-danger" (click)="deleteOrder(order.order_id)"></button>
+        
+        <div class="field">
+          <label for="assign">Assign Courier ID</label>
+          <input type="number" id="assign" [(ngModel)]="order.courier_id" pInputText placeholder="Enter Courier ID" />
+        </div>
+
+        <!-- Button to Assign Order to Courier -->
+        <button pButton label="Assign to Courier" icon="pi pi-check" class="w-full p-button-success" (click)="assignToCourier(order.order_id, order.courier_id)"></button>
+      </div>
+    </div>
+
+    <!-- Template for No Orders -->
+    <ng-template #noOrders>
+      <p>No orders available.</p>
+    </ng-template>
+
+    <!-- Loading message -->
+    <ng-template #loading>
+      <p>Loading orders...</p>
+    </ng-template>
+  </p-card>
+</div>

@@ -1,0 +1,37 @@
+<div class="flex justify-content-center align-items-center min-h-screen">
+    <p-card header="Login" [style]="{width: '400px'}">
+        <form #loginform="ngForm" (ngSubmit)="onLogin()">
+            <div class="field">
+                <label for="email">Email</label>
+                <input type="text" id="email" pInputText [(ngModel)]="login.email" name="email" class="w-full" #email="ngModel" 
+                required 
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                />
+                @if(email.invalid && (email.dirty || email.touched)){
+                    <small class ="block p-error">
+                        @if(email.hasError('required')){
+                            <span>Email is required</span>
+                        }
+                        @else if(email.hasError('pattern')){
+                            <span>Email is invalid</span>
+                        }
+                    </small>
+                }
+            </div>
+            <div class="field">
+                <label for="password">Password</label>  
+                <p-password [(ngModel)]="login.password" [feedback]="false" [toggleMask]="true" inputId="password" 
+                name="password" #password="ngModel" inputStyleClass="w-full" styleClass="w-full" required/>
+                @if(password.invalid && (password.dirty || password.touched)){
+                    <small class="block p-error">Password is required</small>
+                }
+            </div>
+            <section>
+                <input type="checkbox" id="check">
+                <label for="check">Remember me</label>
+            </section>
+            <p-button label="LOG IN" styleClass="w-full" [disabled]="loginform.invalid" type="submit"></p-button> <br>
+            <p-button label="SIGN UP" (click)="navigateToRegister()" class="link-button" [style]="{'margin-top': '15px'}"></p-button>
+        </form>
+    </p-card>
+</div>

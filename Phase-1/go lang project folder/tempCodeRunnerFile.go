@@ -1,0 +1,1 @@
+/order/{order_id}/decline/{courier_id}

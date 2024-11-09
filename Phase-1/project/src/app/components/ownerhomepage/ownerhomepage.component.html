@@ -1,0 +1,26 @@
+<div class="flex justify-content-center align-items-center min-h-screen">
+  <p-card header="Your Orders" [style]="{width: '600px'}">
+      <!-- Button to manually trigger fetching orders -->
+      <p-button label="Load Orders" (click)="getOrders()" class="w-full mb-3"></p-button>
+
+      <ng-container *ngIf="userOrders?.length; else loading">
+          <div *ngFor="let order of userOrders" class="p-card p-mb-3">
+              <p><strong>Order ID:</strong> {{ order.order_id }}</p>
+              <p><strong>Pickup Location:</strong> {{ order.pickup_location }}</p>
+              <p><strong>Drop-off Location:</strong> {{ order.dropoff_location }}</p>
+              <p><strong>Package Details:</strong> {{ order.package_details }}</p>
+              <p><strong>Delivery Time:</strong> {{ order.delivery_time }}</p>
+              <p><strong>Status:</strong> {{ order.status }}</p>
+              <p><strong>Courier ID:</strong> {{ order.courier_id }}</p>
+
+              <p-button label="Cancel Order" class="p-button-danger mt-2" (click)="cancelOrder(order.order_id, order.status)"></p-button>
+          </div>
+      </ng-container>
+
+      <ng-template #loading>
+          <p>Loading orders...</p>
+      </ng-template>
+
+      <p-button label="Create Order" (click)="goToCreateOrder()" class="w-full mt-3"></p-button>
+  </p-card>
+</div>

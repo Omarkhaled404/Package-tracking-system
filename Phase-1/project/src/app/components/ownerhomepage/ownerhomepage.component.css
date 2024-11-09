@@ -1,0 +1,50 @@
+/* General Styles for My Orders Page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    max-width: 600px;
+    width: 100%;
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Order List */
+.orders-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.create-order-btn {
+    background-color: #007bff;
+    color: #fff;
+    display: block;
+    width: 100%;
+    margin-top: 15px;
+}
+
+button:hover {
+    opacity: 0.9;
+}
