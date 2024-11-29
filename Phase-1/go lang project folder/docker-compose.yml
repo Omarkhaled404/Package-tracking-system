@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name:  my-mysql
+    expose:
+    - "3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: abdomessi1102002
+      MYSQL_DATABASE: package_tracking_system
+    ports:
+      - "8000:8000"
+    
+    networks:
+      - app-network
+    restart: always
+
+networks:
+  app-network:
+    driver: bridge
